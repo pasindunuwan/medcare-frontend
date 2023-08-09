@@ -14,10 +14,11 @@ const handleNav =()=> {
 }
   return (
     <div>
-        <nav className='fixed w-full h-24 shadow-xl bg-[#c1d1d8]'>
-<div className = 'flex justify-between items-center h-full w-full px-4 2xl:px-16'>
+        <nav className='fixed w-full  bg-transparent'>
+          
+<div className = 'flex justify-between items-centerh-full w-full px-4 2xl:px-16 '>
 <Link href="/">
-<Image src="/logo.jpg"
+<Image src="/logo.png"
 alt="logo"
 width="98"
 height="98"
@@ -25,26 +26,34 @@ className="cursor-pointer left-[-5]"
 priority
 />
 </Link>
-<div className='hidden sm:flex'>
-<ul className='hidden sm:flex'>
+<div className='hidden  justify-center sm:flex'>
+<ul className='hidden  sm:flex'>
+  <div className="flex space-x-20 ">
+    <div>
 <Link href="/">  
-<li className='ml-10 uppercase hover:boder-b text-xl'>Home</li>
+<li className=' uppercase  text-black hover:text-sky-500 active:text-sky-700  text-xl space-x-4 font-semibold mt-4 '>Home</li>
 </Link>
+</div>
+<div>
 <Link href="/about">
-<li className='ml-10 uppercase hover:blue text-xl'>About</li>
+<li className=' uppercase text-black hover:text-sky-500 active:text-sky-700 text-xl font-semibold mt-4'>About us</li>
 </Link>
-<Link href="/view_profile">
-<li className='ml-10 uppercase hover:boder-b text-xl'>View Profile</li>
+</div>
+<div>
+<Link href="/our_service">
+<li className=' uppercase  text-black hover:text-sky-500 active:text-sky-700  text-xl font-semibold mt-4'>our service</li>
 </Link>
-<Link href="/sing_in">
-<li className='ml-10 uppercase hover:boder-b text-xl'>Sing in</li>
-</Link>
-<Link href="/sing_up">
-<li className='ml-10 uppercase hover:boder-b text-xl'>Sing up</li>
-</Link>
+</div>
+</div>
 </ul>
 </div>
-
+<div className='hidden  sm:flex'>
+<Link href="/sing_in">  
+<div className='bg-blue-500 hover:bg-blue-600 rounded border-8-8 mt-6 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-800'>
+<div className=' text-white font-bold py-2 px-4  '>Log In</div>
+</div>
+</Link>
+</div>
 
 <div onClick={handleNav} className='sm:hidden cursor-pointer pl-24'>
   <AiOutlineMenu size={25}/>
@@ -60,12 +69,25 @@ priority
   <AiOutlineClose size={25}/>
 </div>
   </div>
-   <div className='flex-col pt-6 pb-4'>
+  <div className='pt-10 justify-left'>
+  <header className="bg-blue-500/10 h-15 w-[70%] flex items-center absolute ">
+<Image src="/logo.png"
+alt="logo"
+width="50"
+height="50"
+className="cursor-pointer ustify-items-center ml-8 "
+priority
+/>
+
+    </header>
+    </div>
+
+   <div className=' pt-20 flex-col py-4'>
     <ul>
       <Link href="/">
         <li
         onClick={()=> setMenuopen(false)}
-        className='py-4 cursor-pointer'>
+        className='py-4 cursor-pointer border'>
           Home
         </li>
       </Link>
@@ -76,25 +98,23 @@ priority
           About
         </li>
       </Link>
-      <Link href="/view_profile">
+      <Link href="/our_service">
         <li
         onClick={()=> setMenuopen(false)}
         className='py-4 cursor-pointer'>
-          View Profile
+          Our service
         </li>
       </Link>
+      <li>
+<Link href="/sing_in">  
+<div className='bg-blue-500 hover:bg-blue-600 rounded border-8-8 mt-6 active:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-800'>
+<div className=' text-white font-bold py-2 px-4 ml-8 '>Log In</div>
+</div>
+</Link>
+</li>
  </ul>  
 </div>
-<footer className="bg-white h-20 w-[98%] flex items-center justify-left">
-<Image src="/logo.jpg"
-alt="logo"
-width="50"
-height="50"
-className="cursor-pointer "
-priority
-/>
 
-    </footer>
 </div>
         </nav>
       
