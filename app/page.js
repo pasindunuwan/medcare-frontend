@@ -15,11 +15,11 @@ export default function Home() {
         priority
       />
 
-      <div className="bg-[#7F7EC9] h-full w-full  absolute opacity-60"></div>
+      <div className="bg-[#8b8ac6] h-full w-full  absolute opacity-60"></div>
       <Navbar />
 
       <div className="h-screen flex items-center justify-left   ml-10 md:ml-20 lg:ml-20 xl:ml-20 ">
-        <h1 className="text-[#0F0677] font-serif font-extrabold absolute text-5xl  md:text-6xl lg:text-7xl xl:text-7xl ">
+        <h1 className="text-[#0F0677] font-serif font-extrabold absolute text-5xl  md:text-6xl lg:text-7xl xl:text-7xl">
           MED CARE
         </h1>
         <span className=" text-black absolute  font-sans  pt-40 text-2xl  md:text-3xl lg:text-3xl xl:text-3xl">
