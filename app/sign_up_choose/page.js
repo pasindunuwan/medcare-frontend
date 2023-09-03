@@ -20,7 +20,7 @@ function Page() {
       </div>
 
       <div className='mx-2 p-10 m-10 pt-10'>
-        <h2 className=' font-extrabold lg:text-5xl md:text-4xl text-4xl font-bold opacity-80'>WELCOME TO <div className='text-[#0F0677] my-6'>MED CARE</div></h2>
+        <h2 className=' lg:text-5xl md:text-4xl text-4xl font-bold opacity-80'>WELCOME TO <div className='text-[#0F0677] my-6'>MED CARE</div></h2>
       </div>
 
       <div className=' my-16 flex flex-col md:flex-row items-center gap-10 mx-10 cursor-pointer'>
