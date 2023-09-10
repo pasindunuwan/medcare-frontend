@@ -2,6 +2,8 @@ import React from 'react'
 import Image from 'next/image';
 import doctor_page from '../doctor_page/doctor_pg.png';
 import logo from '../sign_up_choose/logo.png';
+import medicineimg from '../doctor_option_page/medicne.png'
+import medreport from '../doctor_option_page/Reports.png'
 
 function page() {
   return (
@@ -18,21 +20,33 @@ function page() {
             <Image className=' mx-3 ' src={logo} alt="logo" />
         </div>
         <div class=" p-8  flex-col  relative rounded-xl bg-white mx-10 bg-cover bg-image items-center max-w-screen-lg overflow-hidden shadow-xl text-black w-full md:flex-row justify-center">
-          <h1 className=' font-bold p-6 text-center text-3xl opacity-90'>Welcome to.............Page</h1>
-          <from>
-            <div className=' bg-slate-100 rounded-xl p-8 relative mx-5 text-xl m-6 shadow-lg'>
-            <div className=' flex items-center'>
-                <div className=' bg-black m-5'>hiii</div>
-                <div className=' bg-black m-5'>hiii</div>
+        <div className='flex-col'>
+          <h1 className='font-bold p-6 text-center text-3xl opacity-90'>
+            Welcome to <span className='text-[#0F0677]'>Mr. Nuwan’s</span> Page
+          </h1>
+        </div>
+            <div className=' bg-slate-200 rounded-xl p-8 relative mx-5 text-xl m-6 shadow-lg'>
+            <div className=' flex items-center gap-5 justify-center '>
+                <div className=' bg-slate-500 rounded-lg items-center justify-center'>
+                  <div className=' items-center justify-center'>
+                    <Image className='m-11' src={medreport} alt="medreport" />
+                  </div>
+                  <div className="flex flex-col items-center p-2">
+                    <button type='submit'className= ' m-3 py-1 px-8 text-blue-900 bg-slate-300 shadow-2xl rounded-xl font-semibold'>View Reports</button>
+                  </div>
+                </div>
+                <div className=' bg-slate-500 rounded-lg'>
+                  <div>
+                    <Image className=' m-11 ' src={medicineimg} alt="medicineimg" />
+                  </div>
+                  <div className="flex flex-col items-center p-2">
+                    <button type='submit'className= ' m-3 py-1 px-8 text-blue-900 bg-slate-300 shadow-2xl rounded-xl font-semibold'>Add Medicine</button>
+                  </div>
+                </div>
             </div>
-              <div className="flex flex-col items-center">
-                <button type='submit'
-                  className= ' mt-5 py-1 px-8 text-blue-900 bg-slate-400 shadow-2xl rounded-xl font-semibold'
-                  >Send OTP
-                </button>
-              </div>
+
             </div>
-          </from>
+
         </div>
     </div>
   )
