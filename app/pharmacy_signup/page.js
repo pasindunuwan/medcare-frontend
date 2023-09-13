@@ -1,64 +1,88 @@
-import React from 'react'
-import Image from 'next/image';
-import logo from '../sign_up_choose/logo.png';
-import docsign from './signup.png';
-import docform from './signup_form.png';
+import React from "react";
+import Image from "next/image";
+import logo from "../sign_up_choose/logo.png";
+import docsign from "./signup.png";
+import docform from "./signup_form.png";
 
 function page() {
   return (
     <div>
-        <div className='h-screen w-full relative py-24 text-black'>
-          <div>
-            <Image
+      <div className="h-screen w-full relative py-24 text-black">
+        <div>
+          <Image
             className="absolute bg-cover bg-center  sm:h-48 w-full h-auto"
             alt="doctor sign"
             src={docsign}
             layout="fill"
             quality={100}
             priority
-            />
-          </div>
-            <div className="absolute top-2 left-0 cursor-pointer">
-              <Image src={logo} alt="logo" />
+          />
+        </div>
+        <div className="absolute top-2 left-0 cursor-pointer">
+          <Image src={logo} alt="logo" />
+        </div>
+        <div className=" container mx-auto opacity-80">
+          <div className=" flex w-8/12 bg-white mx-auto overflow-hidden ">
+            <div className=" w-1/2 flex flex-col justify-center">
+              <h2 className="mb-8 mr-2-2 text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold">
+                Registration <br /> for <br /> Pharmacy
+              </h2>
+              <dev className=" mr-5 text-lg md:xl lg:2xl">
+                <p>When you can, Always laugh.“ It’s a low-cost drug. “</p>
+              </dev>
             </div>
-            <div className=' container mx-auto opacity-80'>
-                <div className=' flex w-8/12 bg-white mx-auto overflow-hidden '>
-                  <div className=' w-1/2 flex flex-col justify-center' >
-                    
-                    <h2 className='mb-8 mr-2-2 text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold'>Registration <br/> for <br/> Pharmacy</h2>
-                    <dev className=' mr-5 text-lg md:xl lg:2xl'>
-                      <p>When you can, Always laugh.“ It’s a low-cost drug. “</p>
-                    </dev>
-                  </div>
-                  <div className=' w-1/2  bg-black text-white py-8 px-8'>
-                    <form action='#'>
-                      <lable>Pharmacy Name</lable>
-                      <input type='text' className=' text-black mt-2 mb-2 border w-full'></input>
-                      <lable>Email(Username)</lable>
-                      <input type='email' class=' text-black mt-2 mb-2 border w-full'></input>
-                      <lable>Contact No</lable>
-                      <input type='tel' class=' text-black mt-2 mb-2 border w-full'></input>
-                      <lable>Pharmacy Registration No</lable>
-                      <input type='number' class=' text-black mt-2 mb-2 border w-full'></input>
-                      <lable>Located Town</lable>
-                      <input type='text' class=' text-black mt-2 mb-2 border w-full'></input>
-                      <lable>Password</lable>
-                      <input type='password' class=' text-black mt-2 mb-2 border w-full'></input>
-                      <lable>Re-Enter Passsword</lable>
-                      <input type='password' class=' text-black mt-2 mb-2 border w-full'></input>
-                      <dev className='items-center justify-center flex gap-7'>
-                        <button type='submit' className= ' mt-5 py-1 px-10 text-white bg-slate-800 rounded-xl font-bold'>Confirm</button>
-                      </dev>
-                    </form>
-                  </div>
-                </div>
-            </div>           
-       </div>
-       
+            <div className=" w-1/2  bg-black text-white py-8 px-8">
+              <form action="#">
+                <lable>Pharmacy Name</lable>
+                <input
+                  type="text"
+                  className=" text-black mt-2 mb-2 border w-full"
+                ></input>
+                <lable>Email(Username)</lable>
+                <input
+                  type="email"
+                  class=" text-black mt-2 mb-2 border w-full"
+                ></input>
+                <lable>Contact No</lable>
+                <input
+                  type="tel"
+                  class=" text-black mt-2 mb-2 border w-full"
+                ></input>
+                <lable>Pharmacy Registration No</lable>
+                <input
+                  type="number"
+                  class=" text-black mt-2 mb-2 border w-full"
+                ></input>
+                <lable>Located Town</lable>
+                <input
+                  type="text"
+                  class=" text-black mt-2 mb-2 border w-full"
+                ></input>
+                <lable>Password</lable>
+                <input
+                  type="password"
+                  class=" text-black mt-2 mb-2 border w-full"
+                ></input>
+                <lable>Re-Enter Passsword</lable>
+                <input
+                  type="password"
+                  class=" text-black mt-2 mb-2 border w-full"
+                ></input>
+                <dev className="items-center justify-center flex gap-7">
+                  <button
+                    type="submit"
+                    className=" mt-5 py-1 px-10 text-white bg-slate-800 rounded-xl font-bold"
+                  >
+                    Confirm
+                  </button>
+                </dev>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default page
-
-
+export default page;
