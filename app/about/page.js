@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 import React from 'react'
 import Image from 'next/image';
 import Navbar from '../components/Navbar'
 import about_bk_img from '../about/about us.png'
+=======
+import React from "react";
+import Navbar from "../components/Navbar";
+>>>>>>> e58770ec3a0964e88a6d6713e729b17405f033d8
 
 export default function about() {
   return (
     <div>
+<<<<<<< HEAD
       <div>
         <div >
           <Image
@@ -40,6 +46,9 @@ diversity, security, and accountability.</div>
           </div>
         </div>
       </div>
+=======
+      <Navbar />
+>>>>>>> e58770ec3a0964e88a6d6713e729b17405f033d8
     </div>
-  )
+  );
 }
