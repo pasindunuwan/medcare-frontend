@@ -1,8 +1,10 @@
 "use client";
 import React from "react";
+
 import Image from "next/image";
-import logo from "../sign_up_choose/logo.png";
-import docsign from "../public/signup.png";
+
+import logo from "../public/logo.png";
+import docsign from '../public/signup.png';
 import docform from "../public/signup_form.png";
 import { useState } from "react";
 import Link from "next/link";

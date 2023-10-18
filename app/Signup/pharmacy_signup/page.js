@@ -2,7 +2,7 @@
 
 import SentemailAddress from "@/app/components/(Otp)/SentemailAddress";
 import GetDetailsph from "@/app/components/(Otp)/getDetailsD";
-import verifiedotp from "../app/components/(Otp)/verifiedotp";
+import verifiedotp from "@/app/components/(Otp)/verifiedotp";
 import getotp from "@/app/components/(Otp)/getotp";
 
 import { useFormState } from "@/app/components/(Otp)/FormContext";

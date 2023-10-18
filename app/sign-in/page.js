@@ -8,30 +8,34 @@ export default function signin() {
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
   const router = useRouter();
+  const [error, seterror] = useState("");
 
   const onSubmit = async () => {
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: true,
-      callbackUrl: "/home",
-    });
-  };
-  if (result?.error) {
-    // Handle login error
-  } else if (result?.role === "success") {
-    const user = result.user;
+    try {
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
 
-    // Determine user type (assuming you have a "userType" property in the user object)
-    const userrole = user.userrole;
-
-    // Redirect based on user type
-    if (userrole === "doctor") {
-      router.push("/doctor-dashboard");
-    } else if (userrole === "pharmacy") {
-      router.push("/pharmacy-dashboard");
+      if (result?.error) {
+        console.error(result.error);
+      } else if (result?.status === 200) {
+        // Redirect based on user role
+        if (result?.user?.role === "doctor") {
+          router.push("/doctor-dashboard");
+        }
+        if (result?.user?.role === "doctor") {
+          router.push("/doctor-dashboard");
+        } else {
+          router.push("/pharmacy-dashboard");
+        }
+      }
+    } catch (error) {
+      console.error("Error during sign-in:", error);
     }
-  }
+  };
+
   return (
     <div>
       <Image
@@ -55,7 +59,7 @@ export default function signin() {
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-              <form className="space-y-6" action="#" method="POST">
+              <form className="space-y-6" onSubmit={onSubmit} method="POST">
                 <div>
                   <label
                     htmlFor="email"
@@ -68,6 +72,7 @@ export default function signin() {
                       id="email"
                       name="email"
                       type="email"
+                      placeholder="abc@gamil.com"
                       autoComplete="email"
                       required
                       value={email}
@@ -117,7 +122,6 @@ export default function signin() {
                 <div>
                   <button
                     type="submit"
-                    onClick={onSubmit}
                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Sign in
@@ -130,7 +134,7 @@ export default function signin() {
               <p className="mt-10 text-center text-sm text-gray-500">
                 Don't have an account?{" "}
                 <a
-                  href=""
+                  href="./sign_up_choose"
                   className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
                 >
                   create account
