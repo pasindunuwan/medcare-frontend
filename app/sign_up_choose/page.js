@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import s_u_c_bg from "../sign_up_choose/suc_bg.png";
 import logo from "../sign_up_choose/logo.png";
-
 function Page() {
   return (
     <div className="h-screen w-full relative  bg-slate-500">
@@ -17,7 +16,6 @@ function Page() {
       <div className="p-9 opacity-80 cursor-pointer">
         <Image src={logo} alt="logo" />
       </div>
-
       <div className="mx-2 p-10 m-10 pt-10">
         <h2 className=" lg:text-5xl md:text-4xl text-4xl font-bold opacity-80">
           WELCOME TO <div className="text-[#0F0677] my-6">MED CARE</div>
@@ -28,15 +26,17 @@ function Page() {
         <div className=" w-[354px] h-[200px] px-5 py-8 rounded-lg border border-primary bg-slate-400 opacity-90 font-extrabold text-center">
           <a
             className=" text-center lg:text-2xl "
-            href="./Signup/doctor_signup"
+            href="../Signup/doctor_signup"
           >
             Doctor
           </a>
         </div>
+
         <div className=" w-[354px] h-[200px] px-5 py-8 rounded-lg border border-primary bg-slate-400 opacity-90 font-extrabold text-center">
           <a
             className=" text-center lg:text-2xl "
-            href="./Signup/pharmacy_signup"
+            href="../Signup/pharmacy_signup"
+            // href="../Signup/doctor_signup"
           >
             Pharmacy
           </a>
@@ -44,7 +44,7 @@ function Page() {
         <div className=" w-[354px] h-[200px] px-5 py-8 rounded-lg border border-primary bg-slate-400 opacity-90 font-extrabold text-center">
           <a
             className=" text-center lg:text-2xl "
-            href="./Signup/patientSignUp"
+            href="../Signup/patientSignUp"
           >
             Patient{" "}
           </a>

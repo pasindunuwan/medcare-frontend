@@ -1,23 +1,23 @@
 "use client";
 
-import SentemailAddress from "@/app/components/(Otp)/SentemailAddress";
-import getDetailsPatient from "@/app/components/(Otp)/";
-import verifiedotp from "../app/components/(Otp)/verifiedotp";
-import getotp from "@/app/components/(Otp)/getotp";
-
-import { useFormState } from "@/app/components/(Otp)/FormContext";
+import SentemailAddress from "@/app/components/Otp/Patiend/SentemailAddress";
+import GetDetailsPatient from "@/app/components/Otp/Patiend/getDetailsPa";
+import Verifiedotp from "@/app/components/Otp/Patiend/verifiedotp";
+import Getotp from "@/app/components/Otp/Patiend/getotp";
+import { useFormStatePa } from "@/app/components/Otp/Patiend/FormContextPa";
+//import { useFormState } from "@/app/components/(Otp)/FormContext";
 
 function ActiveStepFormComponent() {
-  const { step } = useFormState();
+  const { step } = useFormStatePa();
   switch (step) {
     case 0:
-      return <getDetailsPatient />;
+      return <GetDetailsPatient />;
     case 1:
       return <SentemailAddress />;
     case 2:
-      return <getotp />;
+      return <Getotp />;
     case 3:
-      return <verifiedotp />;
+      return <Verifiedotp />;
     default:
       return null;
   }

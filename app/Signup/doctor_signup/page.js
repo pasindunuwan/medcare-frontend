@@ -1,24 +1,24 @@
-"use client";
+//"use client";
 import React from "react";
 import Link from "next/link";
-import SentemailAddress from "@/app/components/(Otp)/SentemailAddress";
-import getDetailsD from "@/app/components/(Otp)/getDetailsD";
-import verifiedotp from "@/app/components/(Otp)/verifiedotp";
-import getotp from "@/app/components/(Otp)/getotp";
-
-import { useFormState } from "@/app/components/(Otp)/FormContext";
+import SentemailAddress from "@/app/components/Otp/Doctor/SentemailAddress";
+import GetDetailsD from "@/app/components/Otp/Doctor/getDetailsD";
+import Verifiedotp from "@/app/components/Otp/Doctor/verifiedotp";
+import Getotp from "@/app/components/Otp/Doctor/getotp";
+import { useFormStateD } from "@/app/components/Otp/Doctor/FormContextD";
+//import { useFormStateD } from "@/app/components/Otp/Doctor/FormContextD";
 
 function ActiveStepFormComponent() {
-  const { step } = useFormState();
+  const { step, formData } = useFormStateD();
   switch (step) {
     case 0:
-      return <getDetailsD />;
+      return <GetDetailsD />;
     case 1:
       return <SentemailAddress />;
     case 2:
-      return <getotp />;
+      return <Getotp />;
     case 3:
-      return <verifiedotp />;
+      return <Verifiedotp />;
     default:
       return null;
   }

@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+//import { useRouter } from "next/router";
+
 import { signIn } from "next-auth/react";
 
 export default function signin() {
@@ -18,18 +20,17 @@ export default function signin() {
         redirect: false,
       });
 
-      if (result?.error) {
-        console.error(result.error);
-      } else if (result?.status === 200) {
+      if (result?.status === 200) {
         // Redirect based on user role
         if (result?.user?.role === "doctor") {
           router.push("/doctor-dashboard");
-        }
-        if (result?.user?.role === "doctor") {
+        } else if (result?.user?.role === "pharmacy") {
           router.push("/doctor-dashboard");
-        } else {
+        } else if (result?.user?.role === "paitent") {
           router.push("/pharmacy-dashboard");
         }
+      } else {
+        router.push("/doctor-dashboard");
       }
     } catch (error) {
       console.error("Error during sign-in:", error);
