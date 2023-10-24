@@ -61,12 +61,12 @@ function page() {
                                 </div>
                             </div>
                             <div>
-                                    <input type='text' placeholder='Instructions' className='h-20 w-96 px-6 text-lg border-2 border-black border-opacity-50 outline-none focus:border-blue-500 transition duration-200'></input>
+                                    <input type='text' placeholder='Inscructions' className='h-20 w-96 px-6 text-lg border-2 border-black border-opacity-50 outline-none focus:border-blue-500 transition duration-200'></input>
                             </div>
-                            <div className=' py-7 '>
-                                    <input type='checkbox' className=' w-5 h-4'></input>
-                                    <lable>Gave Medicine</lable>
-                                </div>
+                            <div className=" mx-12 flex gap-5">
+                                <button type="submit" className=" mt-8 py-1 px-12 text-blue-900 bg-slate-400 shadow-2xl rounded-xl font-bold">Add</button>
+                                <button type="submit" className=" mt-8 py-1 px-12 text-blue-900 bg-slate-400 shadow-2xl rounded-xl font-bold">Save</button>
+                            </div>
                         </div>
                     </form>
                 </div>
