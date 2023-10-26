@@ -7,7 +7,7 @@ export default function Verifiedotp() {
   // const { formData } = useFormState();
   const router = useRouter();
 
-  const { onHandleBack, onHandleNext, setFormData, formData } =
+  const { onHandleBack, onHandleNext, setFormData, FormData } =
     useFormStatePh();
 
   return (

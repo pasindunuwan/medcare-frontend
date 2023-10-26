@@ -8,7 +8,7 @@ import { useFormStatePh } from "@/app/components/Otp/Pharmacy/FormContextPh";
 
 function GetDetailsph() {
   const user = "pharmacy";
-  const { onHandleBack, onHandleNext, setFormData, formData } =
+  const { onHandleBack, onHandleNext, setFormData, FormData } =
     useFormStatePh();
 
   const [userData, setUserData] = useState({
@@ -56,10 +56,37 @@ function GetDetailsph() {
       role: user,
       //final data output
     }));
-
+    // onHandleNext();
     console.log(userData, "user data");
-    onHandleNext(); //call this funtion to go next step of multi stepform
+    sendusername();
+    //call this funtion to go next step of multi stepform
   }
+
+  async function sendusername() {
+    const email = userData.email;
+    try {
+      const response = await fetch(
+        "http://localhost:8070/pharmacy/pharmacyreg",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }), // Send the email as an object
+        }
+      );
+
+      if (response.ok) {
+        onHandleNext();
+        console.log("mail address send successfull");
+      } else {
+        console.log("mail address send failed");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  }
+
   return (
     <div>
       <div className="h-screen w-full relative py-24 text-black">
@@ -162,6 +189,7 @@ function GetDetailsph() {
 
                 <dev className="items-center justify-center flex gap-7">
                   <button
+                    onClick={handleSubmit}
                     type="submit"
                     className=" mt-5 py-1 px-10 text-white bg-slate-800 rounded-xl font-bold"
                   >

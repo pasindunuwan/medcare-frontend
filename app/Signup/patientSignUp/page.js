@@ -8,15 +8,14 @@ import { useFormStatePa } from "@/app/components/Otp/Patiend/FormContextPa";
 //import { useFormState } from "@/app/components/(Otp)/FormContext";
 
 function ActiveStepFormComponent() {
-  const { step } = useFormStatePa();
-  switch (step) {
+  const { Step } = useFormStatePa();
+  switch (Step) {
     case 0:
       return <GetDetailsPatient />;
+
     case 1:
-      return <SentemailAddress />;
-    case 2:
       return <Getotp />;
-    case 3:
+    case 2:
       return <Verifiedotp />;
     default:
       return null;

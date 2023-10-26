@@ -1,43 +1,49 @@
-"use client";
-import React from "react";
 import { useState, useEffect } from "react";
 
-export default function OtpCountdownTimer(props) {
-  const [seconds, setSeconds] = useState(1);
-  const [minutes, setMinutes] = useState(59);
-  const { Resend } = props;
+export default function CountdownTimer(props) {
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(59);
+  const { handleResend } = props;
+
   useEffect(() => {
-    // Exit if the timer reaches 0
+    let interval;
 
     if (minutes === 0 && seconds === 0) {
-      return;
+      // Timer is up, do something or stop the countdown
+      // For example, you can show a message, trigger an action, etc.
+      clearInterval(interval);
+    } else {
+      interval = setInterval(() => {
+        if (seconds === 0) {
+          setMinutes((prevMinutes) => prevMinutes - 1);
+          setSeconds(59);
+        } else {
+          setSeconds((prevSeconds) => prevSeconds - 1);
+        }
+      }, 1000);
     }
 
-    // Update the countdown every second
-    const timerId = setInterval(() => {
-      if (seconds === 0) {
-        // If seconds reach 0, decrement minutes and set seconds to 59
-        setMinutes((prevMinutes) => prevMinutes - 1);
-        setSeconds(59);
-      } else {
-        // Otherwise, decrement seconds
-        setSeconds((prevSeconds) => prevSeconds - 1);
-      }
-    }, 1000);
-
-    // Clear the interval when the component unmounts or when the timer reaches 0
-    return () => clearInterval(timerId);
-  }, [minutes, seconds]);
-
-  const isResendVisible = minutes === 0 && seconds === 0;
+    return () => clearInterval(interval);
+  }, [minutes, seconds, handleResend]);
 
   return (
     <div>
-      <p>
-        Countdown: {String(minutes).padStart(2, "0")}:
-        {String(seconds).padStart(2, "0")}
-      </p>
-      <p>{isResendVisible ? <button onClick={Resend}>Resend</button> : null}</p>
+      {minutes === 0 && seconds === 0 ? (
+        <div>
+          <a
+            className="flex flex-row items-center text-blue-600"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={handleResend}
+          >
+            Resend code
+          </a>
+        </div>
+      ) : (
+        <p>{`You can request a new code in ${minutes}:${seconds
+          .toString()
+          .padStart(2, "0")}`}</p>
+      )}
     </div>
   );
 }

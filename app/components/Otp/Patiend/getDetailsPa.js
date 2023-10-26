@@ -5,11 +5,13 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import { useFormStatePa } from "@/app/components/Otp/Patiend/FormContextPa";
+//import Email from "next-auth/providers/email";
 
 export default function GetDetailsPatient() {
   const user = "patient";
-  const { onHandleBack, onHandleNext, setFormData, formData } =
-    useFormStatePa(); //use custom hook
+  const { onHandleNext, setFormData, FormData, Step } = useFormStatePa();
+
+  //use custom hook
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -38,25 +40,55 @@ export default function GetDetailsPatient() {
         password: "",
         confirm_password: "",
       }));
+      // onHandleNext();
       return;
       //if password and confirm password doesn't match excute this function
     }
 
-    setFormData((prev) => ({
-      ...prev,
+    setFormData({
+      ...FormData,
 
       name: userData.name,
       email: userData.email,
       tel: userData.tel,
       nic: userData.number,
       password: userData.password,
-      role: user,
-      //final data output
-    }));
 
+      //final data output
+    });
+    console.log(FormData.name, "nameform data");
     console.log(userData, "user data");
-    onHandleNext(); //call this funtion to go next step of multi stepform
+    console.log(Step, " Step1");
+    // onHandleNext();
+    console.log(Step, " Step2");
+    // console.log(setStep);
+    //console.log(name, "user data");
+    sendusername();
   }
+
+  async function sendusername() {
+    email = userData.email;
+    try {
+      const response = await fetch("http://localhost:8070/patient/patientreg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }), // Send the email as an object
+      });
+
+      if (response.ok) {
+        onHandleNext();
+        console.log("mail address send successfull");
+      } else {
+        console.log("mail address send failed");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+    //call this funtion to go next step of multi stepform
+  }
+
   return (
     <div>
       <div className="h-screen w-full relative py-24 text-black">
@@ -65,14 +97,15 @@ export default function GetDetailsPatient() {
             className="absolute bg-cover bg-center  sm:h-48 w-full h-auto"
             alt="doctor sign"
             src="/signup.png"
-            layout="fill"
+            // layout="fill"
             quality={100}
             priority
             width="100"
+            height="100"
           />
         </div>
         <div className="absolute top-2 left-0 cursor-pointer">
-          <Image src="/logo.png" alt="logo" width="50" />
+          <Image src="/logo.png" alt="logo" width="50" height="50" />
         </div>
         <div className=" container mx-auto opacity-80">
           <div className=" flex w-8/12 bg-white mx-auto overflow-hidden ">
@@ -209,6 +242,7 @@ export default function GetDetailsPatient() {
 
                 <div className="mb-4 flex items-center justify-center">
                   <button
+                    onClick={handleSubmit}
                     type="submit"
                     className={`w-4/5 h-10 mt-4 bg-[#41A1F0] text-white font-medium py-2 px-4 rounded 
                 hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 

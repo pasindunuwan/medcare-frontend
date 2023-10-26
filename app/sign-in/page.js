@@ -23,11 +23,11 @@ export default function signin() {
       if (result?.status === 200) {
         // Redirect based on user role
         if (result?.user?.role === "doctor") {
-          router.push("/doctor-dashboard");
+          router.push("/Home");
         } else if (result?.user?.role === "pharmacy") {
-          router.push("/doctor-dashboard");
+          router.push("/Home");
         } else if (result?.user?.role === "paitent") {
-          router.push("/pharmacy-dashboard");
+          router.push("/HOme");
         }
       } else {
         router.push("/doctor-dashboard");

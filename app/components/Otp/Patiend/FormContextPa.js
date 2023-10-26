@@ -2,18 +2,19 @@
 import { createContext, useContext, useState } from "react";
 //create contexthook
 const FormContextPa = createContext({
-  formData: {},
+  FormData: {},
   onHandleBack: () => {},
   onHandleNext: () => {},
   setFormData: () => {},
-  step: 0, //default value of hook
-
+  Step: 0,
+  //default value of hook
 });
 function FormProviderPa({ children }) {
-  const [formData, setFormData] = useState({});
-  const [step, setStep] = useState(0);
-  
+  const [FormData, setFormData] = useState({});
+  const [Step, setStep] = useState(0);
+
   function onHandleNext() {
+    console.log("ballo");
     setStep((prev) => prev + 1);
   }
 
@@ -24,7 +25,7 @@ function FormProviderPa({ children }) {
   return (
     //rap by usig the hook
     <FormContextPa.Provider
-      value={{ formData, setFormData, onHandleBack, onHandleNext, step }} //what are the value pass the using context hook
+      value={{ FormData, setFormData, onHandleBack, onHandleNext, Step }} //what are the value pass the using context hook
     >
       {children}
     </FormContextPa.Provider>

@@ -9,7 +9,7 @@ export default function Verifiedotp() {
   // const { formData } = useFormState();
   const router = useRouter();
 
-  const { onHandleBack, onHandleNext, setFormData, formData } =
+  const { onHandleBack, onHandleNext, setFormData, FormData } =
     useFormStatePa();
 
   return (
@@ -19,12 +19,12 @@ export default function Verifiedotp() {
         Your email has been verified successfully
       </p>
 
-      <Link
+      <a
         href="/sign-in"
         className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-700 border-none text-white text-sm shadow-sm"
       >
         Continue
-      </Link>
+      </a>
     </div>
   );
 }

@@ -8,7 +8,8 @@ import { useFormStateD } from "@/app/components/Otp/Doctor/FormContextD";
 
 export default function GetDetailsD() {
   const user = "doctor";
-  const { onHandleBack, onHandleNext, setFormData, formData } = useFormStateD(); //use custom hook
+  const { onHandleBack, onHandleNext, setFormData, FormData } = useFormStateD(); //use custom hook
+
   const [userData, setUserData] = useState({
     FullName: "",
     email: "",
@@ -49,13 +50,40 @@ export default function GetDetailsD() {
       tel: userData.tel,
       number: userData.number,
       password: userData.password,
-      role: user,
+
       //final data output
     }));
 
     console.log(userData, "user data");
-    onHandleNext(); //call this funtion to go next step of multi stepform
+    sendusername();
+    //onHandleNext();
   }
+
+  async function sendusername() {
+    const email = userData.email;
+    console.log(email, "mail ek awooo");
+    try {
+      const response = await fetch("http://localhost:3001/doctor/docreg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }), // Send the email as an object
+      });
+
+      if (response.ok) {
+        onHandleNext();
+        console.log("mail address send successfull");
+      } else {
+        console.log("mail address send failed");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+
+    //onHandleNext(); //call this funtion to go next step of multi stepform
+  }
+
   return (
     <div>
       <div className="h-screen w-full relative py-36 text-black">
@@ -156,6 +184,7 @@ export default function GetDetailsD() {
                     </p>
                   )}
                   <button
+                    onClick={handleSubmit}
                     type="submit"
                     className=" mt-5 py-1 px-10 text-white bg-slate-800 rounded-xl font-bold"
                   >

@@ -3,42 +3,29 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useFormStateD } from "@/app/components/Otp/Doctor/FormContextD";
 
+//import { useFormStateD } from "@/app/components/Otp/Doctor/FormContextD";
+
 import OtpCountdownTimer from "./otpcountdown";
 
 export default function Getotp() {
-  const { onHandleNext, onHandleBack, formData } = useFormStateD();
+  const { onHandleNext, onHandleBack, FormData, Step } = useFormStateD();
   const [otp, setotp] = useState(["", "", "", ""]); // Assuming a 4-digit OTP
   const [otpError, setotpError] = useState(null);
-
-  useEffect(() => {
-    // Check if all digits are entered
-    const isComplete = otp.every((digit) => digit !== "");
-
-    // Perform length validation when the OTP array changes
-    if (isComplete) {
-      //create the OTP string from the array
-
-      // API call to verify the OTP
-
-      fetchData();
-    } else {
-      setotpError("fill all input");
-      return;
-    }
-  }, [otp]);
-
-  const fetchData = async () => {
-    console.log(formData.email);
+  console.log(Step, "wad ");
+  console.log(FormData.email, "wad ");
+  async function handleSubmit(event) {
+    event.preventDefault();
+    console.log(FormData.email);
     const Otp = otp.join("");
     console.log("OTP:", Otp);
 
     const userData = {
-      ...formData,
+      ...FormData,
       Otp,
     };
 
     try {
-      const response = await fetch("http://localhost:8070/doctor/verify", {
+      const response = await fetch("http://localhost:8070/doctor/Docverify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -57,14 +44,14 @@ export default function Getotp() {
     } catch (error) {
       console.error("An error occurred:", error);
     }
-  };
+  }
   //handel resend
   async function handleResend(e) {
     e.preventDefault();
-    const email = formData.email;
+    const email = FormData.email;
 
     try {
-      const response = await fetch("http://localhost:8070/doctor/resendmail", {
+      const response = await fetch("http://localhost:8070/doctor/docresendmail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -84,58 +71,55 @@ export default function Getotp() {
 
   //handle onchage input
 
-  const handleOtpChange = (e, index) => {
-    const value = e.target.value;
-
-    // Handle backspace
-    if (e.code === "Backspace") {
-      // Clear the current digit
-      const newOtp = [...otp];
-      newOtp[index] = "";
-      setotp(newOtp);
-
-      // Move focus to the previous input
-      const prevIndex = index > 0 ? index - 1 : index;
-      document.getElementById(`otp-input-${prevIndex}`).focus();
-      otpError(null); // Clear any previous errors
-      return;
+  function handleInputChange(index, value) {
+    if (value.length === 1 && index < otp.length - 1) {
+      const nextInput = document.getElementById(`otp-input-${index + 1}`);
+      nextInput.focus();
+    } else if (value.length === 0 && index > 0) {
+      const prevInput = document.getElementById(`otp-input-${index - 1}`);
+      prevInput.focus();
     }
 
-    // Ensure the input is a number and update the corresponding position in the OTP array
-    if (/^[0-9]*$/.test(value)) {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setotp(newOtp);
-      otpError(null);
-      //  automatically move to the next input field after input, you can uncomment the following lines:
-      // const nextIndex = index < otp.length - 1 ? index + 1 : index;
-      // document.getElementById(`otp-input-${nextIndex}`).focus();
-    } else {
-      setotpError("Please enter only numeric values.");
-    }
-  };
+    if (value.length > 1) return;
+
+    const updatedValues = [...otp];
+    updatedValues[index] = value;
+    setotp(updatedValues);
+  }
 
   return (
     <div>
-      <label htmlFor="otp-input">Enter OTP:</label>
-      {otp.map((digit, index) => (
-        <input
-          key={index}
-          type="text"
-          id={`otp-input-${index}`}
-          value={digit}
-          maxLength={1}
-          onChange={(e) => handleOtpChange(e, index)}
-          onKeyDown={(e) => handleOtpChange(e, index)} // Handle keydown events
-        />
-      ))}
-      {otpError && (
-        <div className="flex flex-row text-sm font-medium text-red-600">
-          {" "}
-          <p>{otpError}</p>
+      <p>Enter OTP</p>
+      <form onSubmit={handleSubmit}>
+        {otp.map((value, index) => (
+          <input
+            key={index}
+            type="number"
+            id={`otp-input-${index}`}
+            value={value}
+            autoFocus={index === 0 ? true : false}
+            min={0}
+            max={9}
+            onChange={(e) => handleInputChange(index, e.target.value)}
+          />
+        ))}
+        {otpError && (
+          <div className="flex flex-row text-sm font-medium text-red-600">
+            <p>This code is incorrect</p>
+          </div>
+        )}
+        <div>
+          <button
+            className="flex flex-row items-center justify-center text-center w-full border rounded-xl outline-none py-5 bg-blue-700 border-none text-white text-sm shadow-sm"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            send otp
+          </button>
         </div>
-      )}
-      <OtpCountdownTimer Resend={handleResend} />
+
+        <OtpCountdownTimer Resend={handleResend} />
+      </form>
     </div>
   );
 }

@@ -8,15 +8,14 @@ import { useFormStatePh } from "@/app/components/Otp/Pharmacy/FormContextPh";
 //import { useFormState } from "@/app/components/(Otp)/FormContext";
 
 function ActiveStepFormComponent() {
-  const { step } = useFormStatePh();
-  switch (step) {
+  const { Step } = useFormStatePh();
+  switch (Step) {
     case 0:
       return <GetDetailsph />;
+
     case 1:
-      return <SentemailAddress />;
-    case 2:
       return <Getotp />;
-    case 3:
+    case 2:
       return <Verifiedotp />;
     default:
       return null;

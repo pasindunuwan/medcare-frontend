@@ -1,4 +1,4 @@
-//"use client";
+"use client";
 import React from "react";
 import Link from "next/link";
 import SentemailAddress from "@/app/components/Otp/Doctor/SentemailAddress";
@@ -9,15 +9,14 @@ import { useFormStateD } from "@/app/components/Otp/Doctor/FormContextD";
 //import { useFormStateD } from "@/app/components/Otp/Doctor/FormContextD";
 
 function ActiveStepFormComponent() {
-  const { step, formData } = useFormStateD();
-  switch (step) {
+  const { Step } = useFormStateD();
+  switch (Step) {
     case 0:
       return <GetDetailsD />;
+
     case 1:
-      return <SentemailAddress />;
-    case 2:
       return <Getotp />;
-    case 3:
+    case 2:
       return <Verifiedotp />;
     default:
       return null;
