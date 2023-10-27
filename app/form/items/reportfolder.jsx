@@ -4,10 +4,10 @@ import Image from "next/image";
 import React, { useState } from 'react';
 import { useFormStateF } from "@/app/form/items/FormContextF";
 //import { useRouter } from "next/navigation";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 
 export default function Reportfolder() {
-  const router = useRouter(); 
+  //const router = useRouter(); 
   const { Form, setForm,Data, setData,copiedArray, setCopiedArray,onHandleNext } = useFormStateF();
    
 
@@ -20,15 +20,10 @@ export default function Reportfolder() {
        // const innerArray = Form[index];
         //setCopiedArray([...copiedArray, [...innerArray]]);
         setCopiedArray([...copiedArray, [...Form[index]]]);
-        next();
+        onHandleNext();
       };
     
-      function next(){
-
-        onHandleNext();
-
-      }
-
+     
       return (
         <div>
           <h2>Outer Array</h2>

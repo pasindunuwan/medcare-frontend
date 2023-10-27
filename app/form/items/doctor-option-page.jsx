@@ -5,11 +5,11 @@ import doctor_page from '../doctor_page/doctor_pg.png';
 import logo from '../sign_up_choose/logo.png';
 //import medicineimg from '../doctor_option_page/medicne.png'
 //import medreport from '../doctor_option_page/Reports.png'
-//import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useFormStateF } from "@/app/form/items/FormContextF";
 function Doctoroption() {
   const { Form, setForm,Data, setData,copiedArray, setCopiedArray,onHandleNext} = useFormStateF();
- // const router = useRouter(); 
+ const router = useRouter(); 
   async function handlereport(e) {
     e.preventDefault();
    // const email = email;
@@ -22,20 +22,28 @@ function Doctoroption() {
         },
         body: JSON.stringify({ email }), // Send the email as an object
       });
+      if(response.ok){
       const data = await  response.json()
       setForm( data);
       console.log('Form data:', data);
+      onHandleNext();
+      }
+      else{
+        console.log('error but response ok', );
+      }
     } catch (error) {
       console.error("An error occurred:", error);
     }
-    forward();
+    
   }
 
-  function forward (){
+  
 
-    onHandleNext();
+  
+  function add_Medicine() {
+    router.push("../givemedicine");
+
   }
-
   return (
     <div className=' relative justify-center h-screen items-center w-full min-h-screen flex bg-slate-500'>
         <Image
@@ -70,7 +78,7 @@ function Doctoroption() {
                     <Image className=' m-11 ' src="/medicne.png" alt="medicineimg" />
                   </div>
                   <div className="flex flex-col items-center p-2">
-                    <button type='submit'className= ' m-3 py-1 px-8 text-blue-900 bg-slate-300 shadow-2xl rounded-xl font-semibold'>Add Medicine</button>
+                    <button type='submit'className= ' m-3 py-1 px-8 text-blue-900 bg-slate-300 shadow-2xl rounded-xl font-semibold' onClick={add_Medicine}>Add Medicine</button>
                   </div>
                 </div>
             </div>

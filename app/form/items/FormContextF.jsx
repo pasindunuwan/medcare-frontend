@@ -9,7 +9,8 @@ function FormProviderF({ children }) {
     const [Step, setStep] = useState(0);
   const [Form, setForm] = useState([])
   const [Data, setData]=useState({});
-  
+  const [email, setEmail] = useState("");
+ 
   function onHandleNext() {
     setStep((prev) => prev + 1);
   }
@@ -21,7 +22,7 @@ function FormProviderF({ children }) {
   return (
     //rap by usig the hook
     <FormContextF.Provider
-      value={{Form, setForm,Data, setData,copiedArray, setCopiedArray,onHandleBack, onHandleNext, Step  }} //what are the value pass the using context hook
+      value={{Form, setForm,Data, setData,copiedArray, setCopiedArray,onHandleBack, onHandleNext, Step ,email, setEmail }} //what are the value pass the using context hook
     >
       {children}
     </FormContextF.Provider>

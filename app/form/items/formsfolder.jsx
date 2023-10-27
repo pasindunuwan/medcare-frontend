@@ -11,12 +11,10 @@ export default function Formsfolder() {
         // Copy the inner array at the specified index
        // const setData  =copiedArray[index];
         setData(copiedArray[index]);
-        nextpath();
+        onHandleNext();
       };
 
-function  nextpath(){
-  onHandleNext();
-}
+
   return (
     <div>
 

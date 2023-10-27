@@ -3,8 +3,9 @@ import React from "react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 //import docsign from "./signup.png";
-
+import { useFormStateF } from "@/app/form/items/FormContextF";
 function page() {
+  const { Form, setForm,Data, setData,copiedArray, setCopiedArray,onHandleNext,email, setEmail } = useFormStateF();
   const [formDataArray, setFormDataArray] = useState([]);
   const [FormData, setFormData] = useState({
     MedicineName: "",
@@ -85,6 +86,9 @@ function page() {
   }
   async function handleSubmitArray(e) {
     console.log("array Values in handleSubmitArray:", formDataArray);
+    console.log("email from usecontext",email);
+    const dataarray={...formDataArray,
+      email};
      try {
       // Make an API request to your backend
       // You can replace the URL with your actual backend API endpoint
@@ -93,7 +97,7 @@ function page() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formDataArray),
+        body: JSON.stringify(dataarray),
       });
 
       // Check if the request was successful (status code 2xx)
